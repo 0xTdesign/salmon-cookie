@@ -183,55 +183,58 @@ const dubai = {
 };
 
 const paris = {
-  city: "Paris",
+  city: "paris",
   minCustPerHour: 20,
   maxCustPerHour: 38,
   average: 2.3,
   customersEachHour: [],
   cookiesEachHour: [],
-  totalDailyCookie: 0, // Its 0 so we have it as a number
-
-  //mothod to populate our customersEachhourArray
+  totalDailyCookie: 0,
   calcCustomersEachHour: function () {
     for (let i = 0; i < workingHours.length; i++) {
-      // Going through the loop to see how many Hours are there.
+      //This is going through the array
       this.customersEachHour.push(
         randomNum(this.minCustPerHour, this.maxCustPerHour)
-      ); // Use this. When your looking for a property inside the object your in. .push puts a new item in the array. So we are putting Min and Max in the CustomerEachHours
+      ); // This is using numbers from object and the sum at the top
     }
   },
-  //method to populate our cookies each hour.
   calcCookiesEachHour: function () {
-    this.calcCustomersEachHour(); // This will get the number from above to put it in the array for it to * it by
+    this.calcCustomersEachHour();
+    console.log("hey");
     for (let i = 0; i < workingHours.length; i++) {
-      const oneHourOfSale = Math.ceil(this.customersEachHour[i] * this.average); // This rounds up the number so its not a decimal
-      this.cookiesEachHour.push(oneHourOfSale); // This pushs the number of Cookies sold each hour into the CookieEachhour Array
-      this.totalDailyCookie += oneHourOfSale; // This Adds hourly sales to daily cookies giving total amount
+      const oneHourOfSale = Math.ceil(this.minCustPerHour[i] * this.average); // This is rounding up the number in decimal
+      this.customersEachHour.push(oneHourOfSale); // This is pushing the onehour sell amount into the Customerseachhour array []
+      this.cookiesEachHour += oneHourOfSale; // This adds the cooikie daily sales to give the total amount
     }
   },
 
   render: function () {
     console.log("i");
-    // This is going to render the page
-    this.calcCookiesEachHour(); // This is starting the function to render it.
 
-    const article = document.createElement("article"); // This article document
-    article.classList.add("country"); // This will add a class to the tag to style needs to be under the creating tag.
-    const h2 = document.createElement("h2"); // This is creating a h2 tag
-    h2.textContent = this.city; // This is putting content inside of the h2 tag
-    article.appendChild(h2); // This is putting h2 into the article tag that was created
+    //Need to call the calcCustomEachHour first so we have all the correct details.
+    this.calcCustomersEachHour();
+    console.log(this);
 
-    const ul = document.createElement("ul"); // creating a UL tag
+    // <article>
+    //   <h3>Tokyo</h3>
+    // </article>;
+
+    const article = document.createElement("article"); // Created a Article tag
+    const h2 = document.createElement("h2"); // created a h2 tag
+    h2.textContent = this.city; // This will put Paris in the h2 tag
+    article.appendChild(h2); // This puts the h2 tag inside the article tag
+
+    const ul = document.createElement("ul"); // This creates a UL element
 
     for (let i = 0; i < workingHours.length; i++) {
-      // This brings in the Workinghours into the render
-      const li = document.createElement("li"); // This creates Li tags
-      li.textContent = `${workingHours[i]}: ${this.cookiesEachHour[i]} cookies`; // This populates all the working hours plus hours. You need to put [i] to start from the start
-
-      ul.appendChild(li); // This is putting the tag inside of the Li tag
+      // This brings the top hours into the render
+      const li = document.createElement("li"); // This creates an li
+      li.textContent = `${workingHours[i]}${this.cookiesEachHour[i]} cookie `; // This renders out the working hours and cookies per hour plus Cookie text in li.
+      // Now I need to call it all with appendChild(NAME OF TAG
+      ul.appendChild(li); // This prints Li to UL
     }
-    article.appendChild(ul); // This adds all the Ul/li to the page
-    cookieData.appendChild(article); // This adds to the page
+    article.appendChild(ul); // This puts the ul in article
+    cookieData.appendChild(article); // This puts all the CookieData into article
   },
 };
 
