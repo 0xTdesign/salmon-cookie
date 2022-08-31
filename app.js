@@ -277,7 +277,6 @@ function CookieStand(city, minCustPerHour, maxCustPerHour, average) {
   this.customersEachHour = [];
   this.cookiesEachHour = [];
   this.totalDailyCookie = 0;
-  this.workingHours = [];
 }
 
 CookieStand.prototype.calcCustomersEachHour = function () {
@@ -354,4 +353,10 @@ cookieData.appendChild(tr);
 
 for (let i = 0; i < allShops.length; i++) {
   allShops[i].render();
+}
+
+for (let i = 0; i < workingHours.length; i++) {
+  let th = document.createElement("th");
+  th.textContent = this.totalDailyCookie;
+  tr.appendChild(th);
 }
