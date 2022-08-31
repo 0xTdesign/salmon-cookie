@@ -29,3 +29,7 @@ td {
   padding: 0 auto;
   max-width: 1100px;
 }
+
+.form-btn {
+  margin-top: 10px;
+}

@@ -288,48 +288,38 @@ CookieStand.prototype.calcCustomersEachHour = function () {
 };
 CookieStand.prototype.calcCookiesEachHour = function () {
   this.calcCustomersEachHour();
+  // run method to populate the custEachHour
+
   for (let i = 0; i < workingHours.length; i++) {
     const oneHourOfSale = Math.ceil(this.customersEachHour[i] * this.average);
     this.cookiesEachHour.push(oneHourOfSale);
+    // increase totalDailyCookies
     this.totalDailyCookie += oneHourOfSale;
   }
 };
 
-// table
-//   <tr>
-//     <th>Company</th>
-//     <th>Contact</th>
-//     <th>Country</th>
-//   </tr>
-//   <tr>
-//     <td>Alfreds Futterkiste</td>
-//     <td>Maria Anders</td>
-//     <td>Germany</td>
-//   </tr>
-//   <tr>
-//     <td>Centro comercial Moctezuma</td>
-//     <td>Francisco Chang</td>
-//     <td>Mexico</td>
-//   </tr>
-// </table>
-
 CookieStand.prototype.render = function () {
   this.calcCookiesEachHour();
 
+  // create the row element
   const tr = document.createElement("tr");
+  // create the table data elemet (with let so we can redifend and use it again)
   let td = document.createElement("td");
+  // add the data in there
   td.textContent = this.city;
   tr.appendChild(td);
 
+  // loop through and add the data for each hour to a new td element
   for (i = 0; i < workingHours.length; i++) {
     td = document.createElement("td");
     td.textContent = this.cookiesEachHour[i];
     tr.appendChild(td);
   }
-
+  // add everything to the table
   cookieData.appendChild(tr);
 };
 
+// create our shops
 const seattle = new CookieStand("Seattle", 23, 65, 6.3);
 const tokyo = new CookieStand("Tokyo", 3, 24, 1.2);
 const dubai = new CookieStand("Dubai", 11, 38, 3.7);
@@ -343,6 +333,7 @@ const tr = document.createElement("tr");
 const th = document.createElement("th");
 tr.appendChild(th);
 
+// hours headings
 for (let i = 0; i < workingHours.length; i++) {
   let th = document.createElement("th");
   th.textContent = workingHours[i];
@@ -351,12 +342,13 @@ for (let i = 0; i < workingHours.length; i++) {
 
 cookieData.appendChild(tr);
 
+// get data
 for (let i = 0; i < allShops.length; i++) {
   allShops[i].render();
 }
 
-for (let i = 0; i < workingHours.length; i++) {
-  let th = document.createElement("th");
-  th.textContent = this.totalDailyCookie;
-  tr.appendChild(th);
-}
+// for (let i = 0; i < workingHours.length; i++) {
+//   let th = document.createElement("th");
+//   th.textContent = this.totalDailyCookie;
+//   tr.appendChild(th);
+// }

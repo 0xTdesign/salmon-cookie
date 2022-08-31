@@ -18,13 +18,6 @@ input[type="checkbox"].hidden {
   display: none;
 }
 
-/* @media (max-width: 600px) {
-  .navlist ul {
-    display: none;
-    #008380
-  }
-} */
-
 @media (max-width: 1000px) {
   #menu__toggle {
     opacity: 0;
