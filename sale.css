@@ -262,13 +262,10 @@ footer {
 }
 
 .bottom button {
-  cursor: pointer;
-  border: #ffffff solid 1px;
   color: #fcefe9;
   background-color: #c45c44;
   padding: 8px;
   border-radius: 10px;
-  margin-bottom: 10px;
 }
 
 .sale:hover {
@@ -285,7 +282,7 @@ td {
 }
 
 .container-table {
-  /* border-top: solid 4px var(--border); */
+  border-bottom-right-radius: 10px;
   border-top: solid 4px var(--border);
   background-color: #fab28b;
   height: 100px;

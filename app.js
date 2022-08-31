@@ -277,6 +277,7 @@ function CookieStand(city, minCustPerHour, maxCustPerHour, average) {
   this.customersEachHour = [];
   this.cookiesEachHour = [];
   this.totalDailyCookie = 0;
+  this.workingHours = [];
 }
 
 CookieStand.prototype.calcCustomersEachHour = function () {
@@ -326,6 +327,7 @@ CookieStand.prototype.render = function () {
     td.textContent = this.cookiesEachHour[i];
     tr.appendChild(td);
   }
+
   cookieData.appendChild(tr);
 };
 
@@ -336,6 +338,19 @@ const paris = new CookieStand("Paris", 20, 38, 2.3);
 const lima = new CookieStand("lima", 2, 16, 4.6);
 
 const allShops = [seattle, tokyo, dubai, paris, lima];
+// render times
+
+const tr = document.createElement("tr");
+const th = document.createElement("th");
+tr.appendChild(th);
+
+for (let i = 0; i < workingHours.length; i++) {
+  let th = document.createElement("th");
+  th.textContent = workingHours[i];
+  tr.appendChild(th);
+}
+
+cookieData.appendChild(tr);
 
 for (let i = 0; i < allShops.length; i++) {
   allShops[i].render();
