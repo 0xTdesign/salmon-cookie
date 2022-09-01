@@ -97,6 +97,9 @@ input[type="checkbox"].hidden {
   .menu__item:hover {
     background-color: #cfd8dc;
   }
+  .container1 .family {
+    width: 0%;
+  }
 }
 
 .container1 {
@@ -184,18 +187,25 @@ header {
 }
 
 .call p {
-  font-size: larger;
+  font-size: 1.2rem;
   color: var(--links);
 }
 
+.call p {
+  margin-left: 30px;
+  font-size: 0.8rem;
+}
+
 .phone {
+  margin-right: 20px;
   padding: 8px;
   text-decoration: none;
   color: var(--headers);
 }
 
 .fa {
-  padding: 10px;
+  margin-left: 15px;
+  padding: 5px;
   color: var(--border);
 }
 
@@ -210,10 +220,15 @@ header {
 .fish {
   margin: 0 1rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .fish img {
+  width: 30%;
+}
+
+.container1 .family {
   width: 30%;
 }
 
@@ -395,8 +410,40 @@ figcaption {
   flex-wrap: wrap;
   border-radius: 5px;
   height: 100%;
-  /* Contact me  */
 }
+
+/* Images */
+.container-new {
+  border-radius: 0px 0px 20px 20px;
+  border-top: solid 4px var(--border);
+  margin: 0 auto;
+  padding: 0 auto;
+  max-width: 1100px;
+  background-color: var(--boxes);
+}
+
+.pictures {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+}
+
+.pictures img {
+  width: 150px;
+}
+
+.image-section {
+  margin: 1rem 0.8rem;
+}
+
+h4 {
+  font-size: 2rem;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Contact me  */
 
 .location a {
   cursor: pointer;
