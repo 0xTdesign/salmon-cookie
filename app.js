@@ -313,8 +313,15 @@ CookieStand.prototype.render = function () {
   for (i = 0; i < workingHours.length; i++) {
     td = document.createElement("td");
     td.textContent = this.cookiesEachHour[i];
+
     tr.appendChild(td);
   }
+
+  // create final table header( so its bold and nice) for the total
+  const totalHeader = document.createElement("th");
+  // add the content and append our total
+  totalHeader.textContent = this.totalDailyCookie;
+  tr.appendChild(totalHeader);
   // add everything to the table
   cookieData.appendChild(tr);
 };
@@ -347,8 +354,34 @@ for (let i = 0; i < allShops.length; i++) {
   allShops[i].render();
 }
 
-// for (let i = 0; i < workingHours.length; i++) {
-//   let th = document.createElement("th");
-//   th.textContent = this.totalDailyCookie;
-//   tr.appendChild(th);
-// }
+// This is adding the totel hours to the table - Under so it last in the table
+// Create a new TR row
+const totalTR = document.createElement("tr");
+
+// Create a new TH heading
+let totalTHeading = document.createElement("th");
+
+// Write something in the th and append it
+totalTHeading.textContent = "Hourly Total";
+totalTR.appendChild(totalTHeading);
+
+let total = 0; // to make final total
+// loop through each location and get the hourly rates
+for (let k = 0; k < workingHours.length; k++) {
+  let hourlyTotal = 0; // setting the hour to 0
+  for (let i = 0; i < allShops.length; i++) {
+    // lopp through all the shops
+    hourlyTotal += allShops[i].cookiesEachHour[k];
+  }
+  let totalTH = document.createElement("th"); // This needs to be outside of the For loop
+  totalTH.textContent = hourlyTotal;
+  totalTR.appendChild(totalTH);
+  total += hourlyTotal;
+}
+
+let finalTotalTH = document.createElement("th"); // This creates the final total
+finalTotalTH.textContent = total;
+totalTR.appendChild(finalTotalTH);
+
+//Append new row to the table itself
+cookieData.appendChild(totalTR);

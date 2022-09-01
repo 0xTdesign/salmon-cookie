@@ -20,7 +20,11 @@ input[type="checkbox"].hidden {
 
 @media (max-width: 1000px) {
   .family {
-    display: none;s
+    display: none;
+  }
+
+  .navlist li {
+    padding: 0px;
   }
 
   #menu__toggle {
@@ -72,7 +76,7 @@ input[type="checkbox"].hidden {
     display: inline-block;
     position: fixed;
     top: 40px;
-    right: -120%;
+    right: -150%;
     /* width: 375px; */
     height: 25%;
     margin: 0;
@@ -170,10 +174,14 @@ header {
 }
 .navlist li {
   padding: 25px;
-  color: var(--headers);
   cursor: pointer;
   font-size: 1.2rem;
   list-style: none;
+}
+
+.navlist li a {
+  color: var(--headers);
+  text-decoration: none;
 }
 
 .navlist li:hover {
@@ -424,7 +432,7 @@ figcaption {
 }
 
 .pictures {
-  padding:10px;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   flex-flow: wrap;
@@ -432,7 +440,7 @@ figcaption {
 }
 
 .pictures img {
-  width: 150px;
+  max-width: 15%;
 }
 
 .image-section {

@@ -33,3 +33,7 @@ td {
 .form-btn {
   margin-top: 10px;
 }
+
+main {
+  overflow-x: scroll;
+}
