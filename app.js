@@ -354,34 +354,59 @@ for (let i = 0; i < allShops.length; i++) {
   allShops[i].render();
 }
 
-// This is adding the totel hours to the table - Under so it last in the table
+// Funcion to render all the hourly total to make it go under all locations
 // Create a new TR row
 const totalTR = document.createElement("tr");
+function renderHourlyTotal() {
+  // This is adding the totel hours to the table - Under so it last in the table
 
-// Create a new TH heading
-let totalTHeading = document.createElement("th");
+  // Create a new TH heading
+  let totalTHeading = document.createElement("th");
 
-// Write something in the th and append it
-totalTHeading.textContent = "Hourly Total";
-totalTR.appendChild(totalTHeading);
+  // Write something in the th and append it
+  totalTHeading.textContent = "Hourly Total";
+  totalTR.appendChild(totalTHeading);
 
-let total = 0; // to make final total
-// loop through each location and get the hourly rates
-for (let k = 0; k < workingHours.length; k++) {
-  let hourlyTotal = 0; // setting the hour to 0
-  for (let i = 0; i < allShops.length; i++) {
-    // lopp through all the shops
-    hourlyTotal += allShops[i].cookiesEachHour[k];
+  let total = 0; // to make final total
+  // loop through each location and get the hourly rates
+  for (let k = 0; k < workingHours.length; k++) {
+    let hourlyTotal = 0; // setting the hour to 0
+    for (let i = 0; i < allShops.length; i++) {
+      // lopp through all the shops
+      hourlyTotal += allShops[i].cookiesEachHour[k];
+    }
+    let totalTH = document.createElement("th"); // This needs to be outside of the For loop
+    totalTH.textContent = hourlyTotal;
+    totalTR.appendChild(totalTH);
+    total += hourlyTotal;
   }
-  let totalTH = document.createElement("th"); // This needs to be outside of the For loop
-  totalTH.textContent = hourlyTotal;
-  totalTR.appendChild(totalTH);
-  total += hourlyTotal;
+
+  let finalTotalTH = document.createElement("th"); // This creates the final total
+  finalTotalTH.textContent = total;
+  totalTR.appendChild(finalTotalTH);
+
+  //Append new row to the table itself
+  cookieData.appendChild(totalTR);
 }
+renderHourlyTotal();
+// Add form submit
 
-let finalTotalTH = document.createElement("th"); // This creates the final total
-finalTotalTH.textContent = total;
-totalTR.appendChild(finalTotalTH);
+const submitForm = document.getElementById("cookie-store");
 
-//Append new row to the table itself
-cookieData.appendChild(totalTR);
+form = addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const name = event.target.name.value;
+  const min = event.target.minCust.value;
+  const max = event.target.maxCust.value;
+  const av = event.target.average.value;
+
+  const newData = new CookieStand(name, min, max, av);
+
+  // clear total row
+
+  totalTR.innerHTML = "";
+  newData.render();
+  renderHourlyTotal();
+  // render hourly totals
+});
